@@ -81,5 +81,4 @@ rm -rf $RPM_BUILD_ROOT
 %{ruby_rubylibdir}/RMagick*
 %attr(755,root,root) %{ruby_archdir}/*.so
 %{ruby_ridir}/Magick
-%{ruby_ridir}/Class_*
 %{_examplesdir}/%{name}
