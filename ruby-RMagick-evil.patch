@@ -1,0 +1,20 @@
+diff -ur o-RMagick-1.7.3/ext/RMagick/rmimage.c RMagick-1.7.3/ext/RMagick/rmimage.c
+--- o-RMagick-1.7.3/ext/RMagick/rmimage.c	2005-02-27 08:42:09.000000000 -0700
++++ RMagick-1.7.3/ext/RMagick/rmimage.c	2005-03-21 01:26:05.686629736 -0700
+@@ -13,7 +13,6 @@
+ #if !defined(HasX11)
+ #define HasX11
+ #endif
+-#include "magick/xwindow.h"     // XImageInfo
+ #endif
+ 
+ typedef Image *(effector_t)(const Image *, const double, const double, ExceptionInfo *);
+@@ -574,7 +573,7 @@
+     VALUE *argv,
+     VALUE self)
+ {
+-#ifdef HAVE_XIMPORTIMAGE
++#if 0
+     Image *image;
+     ImageInfo *image_info;
+     volatile VALUE info_obj;
