@@ -8,7 +8,7 @@
 Summary:	Graphics Processing library for Ruby.
 Summary(pl):	Biblioteka przetwarzania grafiki dla Ruby
 Name:		ruby-RMagick
-Version:	1.6.1
+Version:	1.7.0
 Release:	1
 License:	Ruby-alike
 Group:		Development/Languages
