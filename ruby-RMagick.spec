@@ -3,7 +3,7 @@
 %define		ruby_ridir	%(ruby -r rbconfig -e 'include Config; print File.join(CONFIG["datadir"], "ri", CONFIG["ruby_version"], "system")')
 %define		ruby_version	%(ruby -r rbconfig -e 'print Config::CONFIG["ruby_version"]')
 
-%define         tarname		RMagick
+%define		tarname		RMagick
 
 Summary:	Graphics Processing library for Ruby.
 Summary(pl):	Biblioteka przetwarzania grafiki dla Ruby
