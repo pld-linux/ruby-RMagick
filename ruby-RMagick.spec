@@ -29,6 +29,7 @@ BuildRequires:	ImageMagick-coder-svg
 BuildRequires:	ImageMagick-coder-tiff
 BuildRequires:	ImageMagick-coder-url
 BuildRequires:	ImageMagick-coder-wmf
+BuildRequires:	autoconf
 BuildRequires:	ruby-devel
 Requires:	ruby
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
