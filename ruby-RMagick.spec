@@ -6,6 +6,7 @@
 %define         tarname		RMagick
 
 Summary:	Graphics Processing library for Ruby.
+Summary(pl):	Biblioteka przetwarzania grafiki dla Ruby
 Name:		ruby-RMagick
 Version:	1.6.0
 Release:	1
@@ -36,6 +37,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 An interface to the ImageMagick and GraphicsMagick image processing
 libraries. Supports more than 80 image formats, including GIF, JPEG,
 PNG. Includes 2D drawing API. Comprehensive HTML documentation.
+
+%description
+Jest to to interfejs don bibliotek przetwarzania grafiki ImageMagick i
+GraphicsMagick. Wspiera ponad 80 formatów graficznych, w³±czaja±c w to
+GIF, JPEG, PNG. Zawiera API dla dwuwymiarowego rysowania. Obszerna
+dokumentacja w HTML-u.
 
 %prep
 %setup -q -n %{tarname}-%{version}
