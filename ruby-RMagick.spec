@@ -8,7 +8,7 @@
 Summary:	Graphics Processing library for Ruby.
 Summary(pl):	Biblioteka przetwarzania grafiki dla Ruby
 Name:		ruby-RMagick
-Version:	1.6.0
+Version:	1.6.1
 Release:	1
 License:	Ruby-alike
 Group:		Development/Languages
@@ -46,7 +46,7 @@ GIF, JPEG, PNG. Zawiera API dla dwuwymiarowego rysowania. Obszerna
 dokumentacja w HTML-u.
 
 %prep
-%setup -q -n %{tarname}-%{version}
+%setup -q -n %{tarname}-1.6.0
 
 %build
 %{__autoconf}
