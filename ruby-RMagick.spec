@@ -1,10 +1,12 @@
-%define	ruby_archdir	%(ruby -r rbconfig -e 'print Config::CONFIG["archdir"]')
-%define	ruby_rubylibdir	%(ruby -r rbconfig -e 'print Config::CONFIG["rubylibdir"]')
-%define	ruby_ridir	%(ruby -r rbconfig -e 'include Config; print File.join(CONFIG["datadir"], "ri", CONFIG["ruby_version"], "system")')
-%define	ruby_version	%(ruby -r rbconfig -e 'print Config::CONFIG["ruby_version"]')
+%define		ruby_archdir	%(ruby -r rbconfig -e 'print Config::CONFIG["archdir"]')
+%define		ruby_rubylibdir	%(ruby -r rbconfig -e 'print Config::CONFIG["rubylibdir"]')
+%define		ruby_ridir	%(ruby -r rbconfig -e 'include Config; print File.join(CONFIG["datadir"], "ri", CONFIG["ruby_version"], "system")')
+%define		ruby_version	%(ruby -r rbconfig -e 'print Config::CONFIG["ruby_version"]')
+
+%define         tarname		RMagick
+
 Summary:	Graphics Processing library for Ruby.
 Name:		ruby-RMagick
-%define tarname RMagick
 Version:	1.6.0
 Release:	1
 License:	Ruby-alike
@@ -31,9 +33,9 @@ Requires:	ruby
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-An interface to the ImageMagick and GraphicsMagick image processing libraries.
-Supports more than 80 image formats, including GIF, JPEG, PNG. Includes 2D
-drawing API. Comprehensive HTML documentation.
+An interface to the ImageMagick and GraphicsMagick image processing
+libraries. Supports more than 80 image formats, including GIF, JPEG,
+PNG. Includes 2D drawing API. Comprehensive HTML documentation.
 
 %prep
 %setup -q -n %{tarname}-%{version}
@@ -58,7 +60,6 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{ruby_rubylibdir},%{ruby_ridir},%{_examplesdir}/%{name}}
 
 ruby install.rb install --prefix=$RPM_BUILD_ROOT
-
 
 cp -a ri/ri/* $RPM_BUILD_ROOT%{ruby_ridir}
 cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}
