@@ -12,7 +12,7 @@ Version:	1.7.0
 Release:	1
 License:	Ruby-alike
 Group:		Development/Languages
-Source0:	http://rubyforge.org/frs/download.php/1212/%{tarname}-%{version}.tar.bz2
+Source0:	http://rubyforge.org/frs/download.php/2230/%{tarname}-%{version}.tar.bz2
 # Source0-md5:	7970f3eda76a021d2d523befff31cda4
 Source1:	setup.rb
 URL:		http://rmagick.rubyforge.org/
