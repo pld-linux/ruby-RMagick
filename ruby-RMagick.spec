@@ -39,8 +39,8 @@ libraries. Supports more than 80 image formats, including GIF, JPEG,
 PNG. Includes 2D drawing API. Comprehensive HTML documentation.
 
 %description
-Jest to to interfejs don bibliotek przetwarzania grafiki ImageMagick i
-GraphicsMagick. Wspiera ponad 80 formatów graficznych, w³±czaja±c w to
+Jest to to interfejs do bibliotek przetwarzania grafiki ImageMagick i
+GraphicsMagick. Wspiera ponad 80 formatów graficznych, w³±czaj±c w to
 GIF, JPEG, PNG. Zawiera API dla dwuwymiarowego rysowania. Obszerna
 dokumentacja w HTML-u.
 
