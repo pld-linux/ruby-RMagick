@@ -59,8 +59,8 @@ cp %{SOURCE1} install.rb
 rm post-install.rb
 touch post-install.rb
 ruby install.rb config \
-	--rb-dir=%{ruby_rubylibdir} \
-	--so-dir=%{ruby_archdir}
+	--siterubyver=%{ruby_rubylibdir} \
+	--sodir=%{ruby_archdir}
 
 ruby install.rb setup
 
