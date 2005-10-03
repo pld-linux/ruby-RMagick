@@ -18,13 +18,16 @@ Source1:	setup.rb
 Patch0:	%{name}-evil.patch
 URL:		http://rmagick.rubyforge.org/
 BuildConflicts:	ruby-RMagick < 1.7.2
+BuildRequires:	ImageMagick-coder-dot
 BuildRequires:	ImageMagick-coder-dps
 BuildRequires:	ImageMagick-coder-fpx
 BuildRequires:	ImageMagick-coder-jbig
+BuildRequires:	ImageMagick-coder-jpeg
 BuildRequires:	ImageMagick-coder-jpeg2
 BuildRequires:	ImageMagick-coder-miff
 BuildRequires:	ImageMagick-coder-mpr
 BuildRequires:	ImageMagick-coder-pdf
+BuildRequires:	ImageMagick-coder-png
 BuildRequires:	ImageMagick-coder-ps2
 BuildRequires:	ImageMagick-coder-svg
 BuildRequires:	ImageMagick-coder-tiff
