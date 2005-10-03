@@ -9,7 +9,7 @@ Summary:	Graphics Processing library for Ruby.
 Summary(pl):	Biblioteka przetwarzania grafiki dla Ruby
 Name:		ruby-RMagick
 Version:	1.9.2
-Release:	1
+Release:	2
 License:	Ruby-alike
 Group:		Development/Languages
 Source0:	http://rubyforge.org/frs/download.php/6074/%{tarname}-%{version}.tar.bz2
@@ -33,7 +33,7 @@ BuildRequires:	ImageMagick-coder-svg
 BuildRequires:	ImageMagick-coder-tiff
 BuildRequires:	ImageMagick-coder-url
 BuildRequires:	ImageMagick-coder-wmf
-BuildRequires:	ImageMagick-devel >= 6.1.9.4
+BuildRequires:	ImageMagick-devel >= 1:6.2.4.0
 BuildRequires:	autoconf
 BuildRequires:	ruby-devel
 Requires:	ruby
