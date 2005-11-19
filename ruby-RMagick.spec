@@ -1,11 +1,5 @@
-%define		ruby_archdir	%(ruby -r rbconfig -e 'print Config::CONFIG["archdir"]')
-%define		ruby_rubylibdir	%(ruby -r rbconfig -e 'print Config::CONFIG["rubylibdir"]')
-%define		ruby_ridir	%(ruby -r rbconfig -e 'include Config; print File.join(CONFIG["datadir"], "ri", CONFIG["ruby_version"], "system")')
-%define		ruby_version	%(ruby -r rbconfig -e 'print Config::CONFIG["ruby_version"]')
-
 %define		tarname		RMagick
-
-Summary:	Graphics Processing library for Ruby.
+Summary:	Graphics Processing library for Ruby
 Summary(pl):	Biblioteka przetwarzania grafiki dla Ruby
 Name:		ruby-RMagick
 Version:	1.9.2
@@ -15,7 +9,7 @@ Group:		Development/Languages
 Source0:	http://rubyforge.org/frs/download.php/6074/%{tarname}-%{version}.tar.bz2
 # Source0-md5:	09292d22e60455d041d4bfcb7c6a841e
 Source1:	setup.rb
-Patch0:	%{name}-evil.patch
+Patch0:		%{name}-evil.patch
 URL:		http://rmagick.rubyforge.org/
 BuildConflicts:	ruby-RMagick < 1.7.2
 BuildRequires:	ImageMagick-coder-dot
@@ -35,6 +29,7 @@ BuildRequires:	ImageMagick-coder-url
 BuildRequires:	ImageMagick-coder-wmf
 BuildRequires:	ImageMagick-devel >= 1:6.2.4.0
 BuildRequires:	autoconf
+BuildRequires:	rpmbuild(macros) >= 1.263
 BuildRequires:	ruby-devel
 Requires:	ruby
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -53,13 +48,12 @@ dokumentacja w HTML-u.
 %prep
 %setup -q -n %{tarname}-%{version}
 %patch0 -p1
+cp %{SOURCE1} install.rb
 
 %build
 %{__autoconf}
 ./configure # no macro!
-cp %{SOURCE1} install.rb
-rm post-install.rb
-touch post-install.rb
+> post-install.rb
 ruby install.rb config \
 	--siterubyver=%{ruby_rubylibdir} \
 	--sodir=%{ruby_archdir}
