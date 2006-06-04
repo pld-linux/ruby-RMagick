@@ -2,18 +2,17 @@
 Summary:	Graphics Processing library for Ruby
 Summary(pl):	Biblioteka przetwarzania grafiki dla Ruby
 Name:		ruby-RMagick
-Version:	1.11.0
+Version:	1.12.0
 Release:	1
 License:	Ruby-alike
 Group:		Development/Languages
-Source0:	http://rubyforge.org/frs/download.php/10451/%{tarname}-%{version}.tar.bz2
-# Source0-md5:	23536b3f61b818c64dda5f56a4153145
+Source0:	http://rubyforge.org/frs/download.php/10864/%{tarname}-%{version}.tar.bz2
+# Source0-md5:	cf4d06dd1d92ba31ebf92f98689bf65b
 Source1:	setup.rb
 Patch0:		%{name}-evil.patch
 URL:		http://rmagick.rubyforge.org/
 BuildConflicts:	ruby-RMagick < 1.7.2
 BuildRequires:	ImageMagick-coder-dot
-BuildRequires:	ImageMagick-coder-dps
 BuildRequires:	ImageMagick-coder-fpx
 BuildRequires:	ImageMagick-coder-jbig
 BuildRequires:	ImageMagick-coder-jpeg
