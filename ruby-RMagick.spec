@@ -8,7 +8,6 @@ License:	Ruby-alike
 Group:		Development/Languages
 Source0:	http://rubyforge.org/frs/download.php/11315/%{tarname}-%{version}.tar.bz2
 # Source0-md5:	c12834576b7b979a567fe191ec502418
-Source1:	setup.rb
 Patch0:		%{name}-evil.patch
 URL:		http://rmagick.rubyforge.org/
 BuildConflicts:	ruby-RMagick < 1.7.2
@@ -30,6 +29,7 @@ BuildRequires:	ImageMagick-devel >= 1:6.2.4.0
 BuildRequires:	autoconf
 BuildRequires:	rpmbuild(macros) >= 1.277
 BuildRequires:	ruby-devel
+BuildRequires:	setup.rb
 %{?ruby_mod_ver_requires_eq}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -47,7 +47,7 @@ dokumentacja w HTML-u.
 %prep
 %setup -q -n %{tarname}-%{version}
 %patch0 -p1
-cp %{SOURCE1} install.rb
+cp /usr/share/setup.rb install.rb
 
 %build
 %{__autoconf}
