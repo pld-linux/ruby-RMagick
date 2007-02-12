@@ -1,6 +1,6 @@
 %define		tarname		RMagick
 Summary:	Graphics Processing library for Ruby
-Summary(pl.UTF-8):   Biblioteka przetwarzania grafiki dla Ruby
+Summary(pl.UTF-8):	Biblioteka przetwarzania grafiki dla Ruby
 Name:		ruby-RMagick
 Version:	1.14.1
 Release:	1
