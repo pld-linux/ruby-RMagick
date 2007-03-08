@@ -68,7 +68,7 @@ install -d $RPM_BUILD_ROOT{%{ruby_rubylibdir},%{ruby_ridir},%{_examplesdir}/%{na
 
 ruby install.rb install --prefix=$RPM_BUILD_ROOT
 
-cp -a ri/ri/* $RPM_BUILD_ROOT%{ruby_ridir}
+cp -a ri/* $RPM_BUILD_ROOT%{ruby_ridir}
 cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
 %clean
