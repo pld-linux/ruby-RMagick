@@ -3,7 +3,7 @@ Summary:	Graphics Processing library for Ruby
 Summary(pl.UTF-8):	Biblioteka przetwarzania grafiki dla Ruby
 Name:		ruby-%{pkgname}
 Version:	2.13.0
-Release:	10
+Release:	11
 License:	Ruby-alike
 Group:		Development/Languages
 Source0:	http://rubyforge.org/frs/download.php/68156/%{pkgname}-%{version}.tar.bz2
@@ -92,7 +92,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{ruby_rubylibdir},%{ruby_ridir},%{ruby_rdocdir},%{_examplesdir}/%{name}}
 
 ruby setup.rb install \
-	--prefix=$RPM_BUILD_ROOT 
+	--prefix=$RPM_BUILD_ROOT
 
 cp -a ri/* $RPM_BUILD_ROOT%{ruby_ridir}
 cp -a rdoc $RPM_BUILD_ROOT%{ruby_rdocdir}/%{name}-%{version}
