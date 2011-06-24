@@ -27,3 +27,66 @@
    # Save flags
    $CFLAGS     = ENV["CFLAGS"].to_s   + " " + `Magick-config --cflags`.chomp
    $CPPFLAGS   = ENV["CPPFLAGS"].to_s + " " + `Magick-config --cppflags`.chomp
+diff --git a/README b/README
+new file mode 100644
+index 0000000..cb658c5
+--- /dev/null
++++ b/README
+@@ -0,0 +1,7 @@
++Hi, everyone -
++
++We're happy to announce that we have found a new developer for RMagick: Moncef Maiza.
++
++Please join us in welcoming him. Thank you for taking this project on, Moncef!
++
++- Benjamin and Omer.
+diff --git a/build_tarball.rake b/build_tarball.rake
+index dfe2167..c5e678f 100644
+--- a/build_tarball.rake
++++ b/build_tarball.rake
+@@ -68,7 +68,7 @@ def reversion_file(name)
+   tmp_name = name + "_tmp"
+   mv name, tmp_name
+   begin
+-    File.open(name, "w") { |f| f.write lines }
++    File.open(name, "w") { |f| lines.each { |line| f.write line } }
+   rescue
+     mv tmp_name, name
+   ensure
+diff --git a/ext/RMagick/extconf.rb b/ext/RMagick/extconf.rb
+index 78a6260..425b560 100644
+--- a/ext/RMagick/extconf.rb
++++ b/ext/RMagick/extconf.rb
+@@ -244,6 +244,7 @@ have_func("snprintf", headers)
+    "SetMagickMemoryMethods",         # 6.4.1
+    "SparseColorImage",               # 6.3.6-?
+    "SyncAuthenticPixels",            # 6.4.5-6
++   "TransformImageColorspace",       # 6.5.1
+    "TransparentPaintImage",          # 6.3.7-10
+    "TransparentPaintImageChroma"     # 6.4.5-6
+    ].each do |func|
+diff --git a/ext/RMagick/rmimage.c b/ext/RMagick/rmimage.c
+index fdf8cf8..64de23a 100644
+--- a/ext/RMagick/rmimage.c
++++ b/ext/RMagick/rmimage.c
+@@ -6,7 +6,7 @@
+  * Changes since Nov. 2009 copyright &copy; by Benjamin Thomas and Omer Bar-or
+  *
+  * @file     rmimage.c
+- * @version  $Id$
++ * @version  $Id$
+  * @author   Tim Hunter
+  ******************************************************************************/
+ 
+@@ -2993,7 +2993,11 @@ Image_colorspace_eq(VALUE self, VALUE colorspace)
+ 
+     image = rm_check_frozen(self);
+     VALUE_TO_ENUM(colorspace, new_cs, ColorspaceType);
++#if defined(HAVE_TRANSFORMIMAGECOLORSPACE)
++    (void) TransformImageColorspace(image, new_cs);
++#else
+     (void) SetImageColorspace(image, new_cs);
++#endif
+ 
+     return self;
+ }
