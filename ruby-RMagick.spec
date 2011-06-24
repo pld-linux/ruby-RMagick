@@ -2,12 +2,12 @@
 Summary:	Graphics Processing library for Ruby
 Summary(pl.UTF-8):	Biblioteka przetwarzania grafiki dla Ruby
 Name:		ruby-%{pkgname}
-Version:	2.13.0
-Release:	12
+Version:	2.13.1
+Release:	0.1
 License:	Ruby-alike
 Group:		Development/Languages
-Source0:	http://rubyforge.org/frs/download.php/68156/%{pkgname}-%{version}.tar.bz2
-# Source0-md5:	f79ff3c6587d3cc3b90c7550e563a59d
+Source0:	http://rubyforge.org/frs/download.php/70067/%{pkgname}-%{version}.tar.bz2
+# Source0-md5:	fa419869d5533884e4556c8b8b390adb
 Patch0:		%{name}-IM.patch
 URL:		http://rmagick.rubyforge.org/
 BuildRequires:	ImageMagick-coder-dot
