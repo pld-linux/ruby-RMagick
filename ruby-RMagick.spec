@@ -74,7 +74,7 @@ Dokumentacji w formacie ri dla %{pkgname}.
 %patch0 -p1
 # this thingy tries to install html doc somewhere
 # but we package it as %%doc
-rm post-install.rb
+%{__rm} post-install.rb
 
 %build
 ruby setup.rb config \
@@ -85,7 +85,7 @@ ruby setup.rb setup
 
 rdoc --ri --op ri ext/RMagick lib
 rdoc --op rdoc ext/RMagick lib
-rm ri/created.rid
+%{__rm} ri/created.rid
 
 %install
 rm -rf $RPM_BUILD_ROOT
