@@ -69,15 +69,6 @@ diff --git a/ext/RMagick/rmimage.c b/ext/RMagick/rmimage.c
 index fdf8cf8..64de23a 100644
 --- a/ext/RMagick/rmimage.c
 +++ b/ext/RMagick/rmimage.c
-@@ -6,7 +6,7 @@
-  * Changes since Nov. 2009 copyright &copy; by Benjamin Thomas and Omer Bar-or
-  *
-  * @file     rmimage.c
-- * @version  $Id$
-+ * @version  $Id$
-  * @author   Tim Hunter
-  ******************************************************************************/
- 
 @@ -2993,7 +2993,11 @@ Image_colorspace_eq(VALUE self, VALUE colorspace)
  
      image = rm_check_frozen(self);
