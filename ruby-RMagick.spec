@@ -29,6 +29,7 @@ BuildRequires:	rpmbuild(macros) >= 1.484
 BuildRequires:	ruby >= 1:1.8.6
 BuildRequires:	ruby-devel
 BuildRequires:	ruby-modules
+BuildRequires:	ruby-rdoc
 BuildConflicts:	ruby-RMagick < 1.7.2
 %{?ruby_mod_ver_requires_eq}
 %requires_eq_to	ImageMagick-libs ImageMagick-devel
