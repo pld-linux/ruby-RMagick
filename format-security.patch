@@ -1,0 +1,20 @@
+--- RMagick-2.13.1/ext/RMagick/rmutil.c.format	2009-12-21 19:34:58.000000000 +0900
++++ RMagick-2.13.1/ext/RMagick/rmutil.c	2013-12-03 22:56:36.000000000 +0900
+@@ -1609,7 +1609,7 @@
+ void
+ rm_fatal_error_handler(const ExceptionType severity, const char *reason, const char *description)
+ {
+-    rb_raise(Class_FatalImageMagickError, GetLocaleExceptionMessage(severity, reason));
++    rb_raise(Class_FatalImageMagickError, "%s", GetLocaleExceptionMessage(severity, reason));
+     description = description;
+ }
+ 
+@@ -1649,7 +1649,7 @@
+             exception->description ? ": " : "",
+             exception->description ? GetLocaleExceptionMessage(exception->severity, exception->description) : "");
+         msg[sizeof(msg)-1] = '\0';
+-        rb_warning(msg);
++        rb_warning("%s", msg);
+ 
+         // Caller deletes ExceptionInfo...
+ 
