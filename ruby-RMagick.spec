@@ -11,6 +11,7 @@ Source0:	http://rubygems.org/downloads/rmagick-%{version}.gem
 Patch0:		format-security.patch
 Patch1:		rubygems.patch
 Patch2:		disable-hanging-handler.patch
+Patch3:		disable-tests.patch
 URL:		https://github.com/gemhome/rmagick
 BuildRequires:	ImageMagick-coder-dot
 BuildRequires:	ImageMagick-coder-fpx
@@ -79,6 +80,7 @@ Dokumentacji w formacie ri dla %{pkgname}.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 # write .gemspec
