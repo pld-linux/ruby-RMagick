@@ -3,7 +3,7 @@ Summary:	Graphics Processing library for Ruby
 Summary(pl.UTF-8):	Biblioteka przetwarzania grafiki dla Ruby
 Name:		ruby-%{pkgname}
 Version:	2.13.4
-Release:	1
+Release:	2
 License:	Ruby-alike
 Group:		Development/Languages
 Source0:	http://rubygems.org/downloads/rmagick-%{version}.gem
@@ -32,11 +32,10 @@ BuildRequires:	rpmbuild(macros) >= 1.484
 BuildRequires:	ruby >= 1:1.8.6
 BuildRequires:	ruby-devel
 BuildRequires:	ruby-modules
-BuildRequires:	ruby-rdoc
 BuildRequires:	ruby-rake
 BuildRequires:	ruby-rake-compiler
+BuildRequires:	ruby-rdoc
 BuildConflicts:	ruby-RMagick < 1.7.2
-%{?ruby_mod_ver_requires_eq}
 %requires_eq_to	ImageMagick-libs ImageMagick-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -56,6 +55,9 @@ Summary:	HTML documentation for %{pkgname}
 Summary(pl.UTF-8):	Dokumentacja w formacie HTML dla %{pkgname}
 Group:		Documentation
 Requires:	ruby >= 1:1.8.7-4
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description rdoc
 HTML documentation for %{pkgname}.
@@ -68,6 +70,9 @@ Summary:	ri documentation for %{pkgname}
 Summary(pl.UTF-8):	Dokumentacja w formacie ri dla %{pkgname}
 Group:		Documentation
 Requires:	ruby
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description ri
 ri documentation for %{pkgname}.
