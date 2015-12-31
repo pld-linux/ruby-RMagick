@@ -1,8 +1,0 @@
---- RMagick-2.13.4/test/test_all_basic.rb~	2015-03-17 08:44:21.000000000 +0100
-+++ RMagick-2.13.4/test/test_all_basic.rb	2015-03-17 08:47:51.819800859 +0100
-@@ -1,4 +1,5 @@
- #! /usr/local/bin/ruby -w
-+require 'rubygems'
- require 'RMagick'
- require 'test/unit'
- require 'test/unit/ui/console/testrunner'  if !RUBY_VERSION[/^1\.9|^2/]
