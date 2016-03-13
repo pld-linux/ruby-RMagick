@@ -3,13 +3,14 @@ Summary:	Graphics Processing library for Ruby
 Summary(pl.UTF-8):	Biblioteka przetwarzania grafiki dla Ruby
 Name:		ruby-%{pkgname}
 Version:	2.15.4
-Release:	1
+Release:	2
 License:	Ruby-alike
 Group:		Development/Languages
 Source0:	http://rubygems.org/downloads/rmagick-%{version}.gem
 # Source0-md5:	ca28bf18354103aada43bbe070c3df4d
 Patch0:		no-gem.patch
 Patch1:		disable-tests.patch
+Patch2:		no-git.patch
 URL:		https://github.com/gemhome/rmagick
 BuildRequires:	ImageMagick-coder-dot
 BuildRequires:	ImageMagick-coder-fpx
@@ -86,6 +87,7 @@ Dokumentacji w formacie ri dla %{pkgname}.
 %setup -q -n %{pkgname}-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %{__rm} spec/rmagick/draw_spec.rb
 

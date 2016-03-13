@@ -1,0 +1,42 @@
+--- RMagick-2.15.4/Rakefile~	2016-03-13 10:19:00.000000000 +0100
++++ RMagick-2.15.4/Rakefile	2016-03-13 10:20:10.123489864 +0100
+@@ -21,14 +21,6 @@
+   end
+ end
+ 
+-desc 'abort when repo is not clean or has uncommited code'
+-task :assert_clean_repo do
+-  sh('git diff --exit-code')
+-  abort 'Git repo not clean' unless $CHILD_STATUS.success?
+-  sh('git diff-index --quiet --cached HEAD')
+-  abort 'Git repo not commited' unless $CHILD_STATUS.success?
+-end
+-
+ desc 'build gem'
+ task :build => [:config] do
+   sh 'gem build -V rmagick.gemspec'
+@@ -41,24 +33,6 @@
+   end
+ end
+ 
+-task :push_and_tag => [:build] do
+-  sh "gem push #{File.join(base, 'pkg', gem_name)}"
+-  if $CHILD_STATUS.success?
+-    sh "git tag -a -m \"Version #{version}\" #{version_tag}"
+-    STDOUT.puts "Tagged #{version_tag}."
+-    sh 'git push'
+-    sh 'git push --tags'
+-  else
+-    abort 'tagging aborted pushing gem failed'
+-  end
+-end
+-
+-desc 'Release'
+-task :release => [:assert_clean_repo, :push_and_tag]
+-
+-desc 'Release and build the legacy way'
+-task :legacy_release=> ['legacy:README.html', 'legacy:extconf', 'legacy:doc', 'legacy:manifest', 'release']
+-
+ namespace :legacy do
+   require 'find'
+ 
