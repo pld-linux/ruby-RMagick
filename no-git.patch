@@ -40,3 +40,14 @@
  namespace :legacy do
    require 'find'
  
+--- RMagick-2.15.4/rmagick.gemspec~	2016-03-13 10:39:36.000000000 +0100
++++ RMagick-2.15.4/rmagick.gemspec	2016-03-13 10:42:46.932844991 +0100
+@@ -13,7 +13,7 @@
+   s.homepage = 'https://github.com/rmagick/rmagick'
+   s.license = 'MIT'
+ 
+-  tracked_files = `git ls-files`.split($OUTPUT_RECORD_SEPARATOR)
++  tracked_files = `find ./ -printf "%P\n"`.split($OUTPUT_RECORD_SEPARATOR)
+   file_exclusion_regex = %r{(\Alib/rvg/to_c.rb)}
+   files         = tracked_files.reject{|file| file[file_exclusion_regex] }
+   test_files    = files.grep(%r{^(test|spec|features)/})
