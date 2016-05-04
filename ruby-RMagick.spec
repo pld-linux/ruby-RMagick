@@ -39,7 +39,7 @@ BuildRequires:	ruby-rspec-expectations
 BuildRequires:	ruby-rspec-mocks
 BuildRequires:	ruby-simplecov
 BuildConflicts:	ruby-RMagick < 1.7.2
-%requires_eq_to	ImageMagick-libs ImageMagick-devel
+%requires_ge_to	ImageMagick-libs ImageMagick-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
