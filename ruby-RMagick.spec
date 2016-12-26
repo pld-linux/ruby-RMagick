@@ -2,31 +2,31 @@
 Summary:	Graphics Processing library for Ruby
 Summary(pl.UTF-8):	Biblioteka przetwarzania grafiki dla Ruby
 Name:		ruby-%{pkgname}
-Version:	2.15.4
-Release:	7
+Version:	2.16.0
+Release:	1
 License:	Ruby-alike
 Group:		Development/Languages
 Source0:	http://rubygems.org/downloads/rmagick-%{version}.gem
-# Source0-md5:	ca28bf18354103aada43bbe070c3df4d
+# Source0-md5:	d03bb84d342b0a78f9c6262acb451dc8
 Patch0:		no-gem.patch
 Patch1:		disable-tests.patch
 Patch2:		no-git.patch
 URL:		https://github.com/gemhome/rmagick
-BuildRequires:	ImageMagick-coder-dot
-BuildRequires:	ImageMagick-coder-fpx
-BuildRequires:	ImageMagick-coder-jbig
-BuildRequires:	ImageMagick-coder-jpeg
-BuildRequires:	ImageMagick-coder-jpeg2
-BuildRequires:	ImageMagick-coder-miff
-BuildRequires:	ImageMagick-coder-mpr
-BuildRequires:	ImageMagick-coder-pdf
-BuildRequires:	ImageMagick-coder-png
-BuildRequires:	ImageMagick-coder-ps2
-BuildRequires:	ImageMagick-coder-svg
-BuildRequires:	ImageMagick-coder-tiff
-BuildRequires:	ImageMagick-coder-url
-BuildRequires:	ImageMagick-coder-wmf
-BuildRequires:	ImageMagick-devel >= 1:6.7.0.7-2
+BuildRequires:	ImageMagick6-coder-dot
+BuildRequires:	ImageMagick6-coder-fpx
+BuildRequires:	ImageMagick6-coder-jbig
+BuildRequires:	ImageMagick6-coder-jpeg
+BuildRequires:	ImageMagick6-coder-jpeg2
+BuildRequires:	ImageMagick6-coder-miff
+BuildRequires:	ImageMagick6-coder-mpr
+BuildRequires:	ImageMagick6-coder-pdf
+BuildRequires:	ImageMagick6-coder-png
+BuildRequires:	ImageMagick6-coder-ps2
+BuildRequires:	ImageMagick6-coder-svg
+BuildRequires:	ImageMagick6-coder-tiff
+BuildRequires:	ImageMagick6-coder-url
+BuildRequires:	ImageMagick6-coder-wmf
+BuildRequires:	ImageMagick6-devel >= 1:6.7.0.7-2
 BuildRequires:	rpmbuild(macros) >= 1.484
 BuildRequires:	ruby >= 1:1.8.6
 BuildRequires:	ruby-devel
@@ -39,7 +39,7 @@ BuildRequires:	ruby-rspec-expectations
 BuildRequires:	ruby-rspec-mocks
 BuildRequires:	ruby-simplecov
 BuildConflicts:	ruby-RMagick < 1.7.2
-%requires_ge_to	ImageMagick-libs ImageMagick-devel
+%requires_ge_to	ImageMagick6-libs ImageMagick6-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
