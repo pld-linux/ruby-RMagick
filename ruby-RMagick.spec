@@ -1,6 +1,6 @@
 %define pkgname RMagick
 Summary:	Graphics Processing library for Ruby
-Summary(pl.UTF-8):	Biblioteka przetwarzania grafiki dla Ruby
+Summary(pl.UTF-8):	Biblioteka przetwarzania grafiki dla języka Ruby
 Name:		ruby-%{pkgname}
 Version:	2.16.0
 Release:	1
@@ -50,13 +50,13 @@ PNG. Includes 2D drawing API. Comprehensive HTML documentation.
 
 %description -l pl.UTF-8
 Jest to interfejs do bibliotek przetwarzania grafiki ImageMagick i
-GraphicsMagick. Wspiera ponad 80 formatów graficznych, włączając w to
-GIF, JPEG, PNG. Zawiera API dla dwuwymiarowego rysowania. Obszerna
+GraphicsMagick. Obsługuje ponad 80 formatów graficznych, włączając w
+to GIF, JPEG, PNG. Zawiera API dla dwuwymiarowego rysowania. Obszerna
 dokumentacja w HTML-u.
 
 %package rdoc
-Summary:	HTML documentation for %{pkgname}
-Summary(pl.UTF-8):	Dokumentacja w formacie HTML dla %{pkgname}
+Summary:	HTML documentation for Ruby %{pkgname} module
+Summary(pl.UTF-8):	Dokumentacja w formacie HTML dla modułu języka Ruby %{pkgname}
 Group:		Documentation
 Requires:	ruby >= 1:1.8.7-4
 %if "%{_rpmversion}" >= "5"
@@ -64,14 +64,14 @@ BuildArch:	noarch
 %endif
 
 %description rdoc
-HTML documentation for %{pkgname}.
+HTML documentation for Ruby %{pkgname} module.
 
 %description rdoc -l pl.UTF-8
-Dokumentacja w formacie HTML dla %{pkgname}.
+Dokumentacja w formacie HTML dla modułu języka Ruby %{pkgname}.
 
 %package ri
-Summary:	ri documentation for %{pkgname}
-Summary(pl.UTF-8):	Dokumentacja w formacie ri dla %{pkgname}
+Summary:	ri documentation for Ruby %{pkgname} module
+Summary(pl.UTF-8):	Dokumentacja w formacie ri dla modułu języka Ruby %{pkgname}
 Group:		Documentation
 Requires:	ruby
 %if "%{_rpmversion}" >= "5"
@@ -79,10 +79,10 @@ BuildArch:	noarch
 %endif
 
 %description ri
-ri documentation for %{pkgname}.
+ri documentation for Ruby %{pkgname} module.
 
 %description ri -l pl.UTF-8
-Dokumentacji w formacie ri dla %{pkgname}.
+Dokumentacja w formacie ri dla modułu języka Ruby %{pkgname}.
 
 %prep
 %setup -q -n %{pkgname}-%{version}
@@ -114,7 +114,7 @@ rdoc --op rdoc ext/RMagick lib
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{ruby_vendorlibdir},%{ruby_vendorarchdir},%{ruby_ridir},%{ruby_specdir},%{ruby_rdocdir}/%{name}-%{version},%{_examplesdir}/%{name}}
+install -d $RPM_BUILD_ROOT{%{ruby_vendorlibdir},%{ruby_vendorarchdir},%{ruby_ridir},%{ruby_specdir},%{ruby_rdocdir}/%{name}-%{version},%{_examplesdir}/%{name}-%{version}}
 
 cp -a lib/* $RPM_BUILD_ROOT%{ruby_vendorlibdir}
 %{__rm} $RPM_BUILD_ROOT%{ruby_vendorlibdir}/RMagick2.so
@@ -124,7 +124,7 @@ install -p lib/RMagick2.so $RPM_BUILD_ROOT%{ruby_vendorarchdir}
 
 cp -a ri/* $RPM_BUILD_ROOT%{ruby_ridir}
 cp -a rdoc/* $RPM_BUILD_ROOT%{ruby_rdocdir}/%{name}-%{version}
-cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}
+cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 # install gemspec
 cp -p %{pkgname}-%{version}.gemspec $RPM_BUILD_ROOT%{ruby_specdir}
@@ -134,12 +134,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc CHANGELOG.md README.textile CONTRIBUTING.md
-%{ruby_vendorlibdir}/rmagick*
-%{ruby_vendorlibdir}/rvg*
-%attr(755,root,root) %{ruby_vendorarchdir}/*.so
+%doc doc CHANGELOG.md LICENSE README.textile
+%{ruby_vendorlibdir}/rmagick
+%{ruby_vendorlibdir}/rmagick*.rb
+%{ruby_vendorlibdir}/rvg
+%attr(755,root,root) %{ruby_vendorarchdir}/RMagick2.so
 %{ruby_specdir}/%{pkgname}-%{version}.gemspec
-%{_examplesdir}/%{name}
+%{_examplesdir}/%{name}-%{version}
 
 %files rdoc
 %defattr(644,root,root,755)
