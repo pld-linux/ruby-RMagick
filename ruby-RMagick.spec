@@ -1,3 +1,8 @@
+#
+# Conditional build:
+%bcond_without	tests		# build without tests
+%bcond_without	doc			# don't build ri/rdoc
+
 %define pkgname RMagick
 Summary:	Graphics Processing library for Ruby
 Summary(pl.UTF-8):	Biblioteka przetwarzania grafiki dla języka Ruby
@@ -13,6 +18,15 @@ Patch1:		disable-tests.patch
 Patch2:		no-git.patch
 Patch3:		magick6.patch
 URL:		https://github.com/gemhome/rmagick
+BuildRequires:	ImageMagick6-devel >= 1:6.7.0.7-2
+BuildRequires:	rpmbuild(macros) >= 1.484
+BuildRequires:	ruby >= 1:1.8.6
+BuildRequires:	ruby-devel
+BuildRequires:	ruby-modules
+BuildRequires:	ruby-rake
+BuildRequires:	ruby-rake-compiler
+BuildRequires:	ruby-simplecov
+%if %{with tests}
 BuildRequires:	ImageMagick6-coder-dot
 BuildRequires:	ImageMagick6-coder-fpx
 BuildRequires:	ImageMagick6-coder-jbig
@@ -27,18 +41,13 @@ BuildRequires:	ImageMagick6-coder-svg
 BuildRequires:	ImageMagick6-coder-tiff
 BuildRequires:	ImageMagick6-coder-url
 BuildRequires:	ImageMagick6-coder-wmf
-BuildRequires:	ImageMagick6-devel >= 1:6.7.0.7-2
-BuildRequires:	rpmbuild(macros) >= 1.484
-BuildRequires:	ruby >= 1:1.8.6
-BuildRequires:	ruby-devel
-BuildRequires:	ruby-modules
-BuildRequires:	ruby-rake
-BuildRequires:	ruby-rake-compiler
-BuildRequires:	ruby-rdoc
 BuildRequires:	ruby-rspec-core
 BuildRequires:	ruby-rspec-expectations
 BuildRequires:	ruby-rspec-mocks
-BuildRequires:	ruby-simplecov
+%endif
+%if %{with doc}
+BuildRequires:	ruby-rdoc
+%endif
 BuildConflicts:	ruby-RMagick < 1.7.2
 %requires_ge_to	ImageMagick6-libs ImageMagick6-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -101,16 +110,23 @@ Dokumentacja w formacie ri dla modułu języka Ruby %{pkgname}.
 ruby -r rubygems -e 'spec = eval(File.read("rmagick.gemspec"))
 	File.open("%{pkgname}-%{version}.gemspec", "w") do |file|
 	file.puts spec.to_ruby_for_cache
-end'
+end' #'
 
-rake \
+rake compile \
 	CC="%{__cc}" \
 	LDFLAGS="%{rpmldflags}" \
 	CFLAGS="%{rpmcflags} -fPIC"
 
+%if %{with tests}
+rake spec
+rake test
+%endif
+
+%if %{with doc}
 rdoc --ri --op ri ext/RMagick lib
 rdoc --op rdoc ext/RMagick lib
 %{__rm} ri/created.rid
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -122,8 +138,11 @@ cp -a lib/* $RPM_BUILD_ROOT%{ruby_vendorlibdir}
 # install ext
 install -p lib/RMagick2.so $RPM_BUILD_ROOT%{ruby_vendorarchdir}
 
+%if %{with doc}
 cp -a ri/* $RPM_BUILD_ROOT%{ruby_ridir}
 cp -a rdoc/* $RPM_BUILD_ROOT%{ruby_rdocdir}/%{name}-%{version}
+%endif
+
 cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 # install gemspec
@@ -142,6 +161,7 @@ rm -rf $RPM_BUILD_ROOT
 %{ruby_specdir}/%{pkgname}-%{version}.gemspec
 %{_examplesdir}/%{name}-%{version}
 
+%if %{with doc}
 %files rdoc
 %defattr(644,root,root,755)
 %{ruby_rdocdir}/%{name}-%{version}
@@ -150,3 +170,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{ruby_ridir}/Magick
 %{ruby_ridir}/RMagick
+%endif
