@@ -19,6 +19,9 @@ Patch2:		no-git.patch
 Patch3:		magick6.patch
 URL:		https://github.com/gemhome/rmagick
 BuildRequires:	ImageMagick6-devel >= 1:6.7.0.7-2
+BuildRequires:	ruby-test-unit
+BuildRequires:	gmp-devel
+BuildRequires:	rpm-rubyprov
 BuildRequires:	rpmbuild(macros) >= 1.484
 BuildRequires:	ruby >= 1:1.8.6
 BuildRequires:	ruby-devel
@@ -26,6 +29,9 @@ BuildRequires:	ruby-modules
 BuildRequires:	ruby-rake
 BuildRequires:	ruby-rake-compiler
 BuildRequires:	ruby-simplecov
+BuildRequires:	ruby-rspec-core
+BuildRequires:	ruby-rspec-expectations
+BuildRequires:	ruby-rspec-mocks
 %if %{with tests}
 BuildRequires:	ImageMagick6-coder-dot
 BuildRequires:	ImageMagick6-coder-fpx
@@ -41,9 +47,6 @@ BuildRequires:	ImageMagick6-coder-svg
 BuildRequires:	ImageMagick6-coder-tiff
 BuildRequires:	ImageMagick6-coder-url
 BuildRequires:	ImageMagick6-coder-wmf
-BuildRequires:	ruby-rspec-core
-BuildRequires:	ruby-rspec-expectations
-BuildRequires:	ruby-rspec-mocks
 %endif
 %if %{with doc}
 BuildRequires:	ruby-rdoc
