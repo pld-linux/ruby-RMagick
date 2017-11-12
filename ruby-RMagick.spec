@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	tests		# build without tests
+%bcond_with	tests		# build without tests
 %bcond_without	doc			# don't build ri/rdoc
 
 %define pkgname RMagick
@@ -8,7 +8,7 @@ Summary:	Graphics Processing library for Ruby
 Summary(pl.UTF-8):	Biblioteka przetwarzania grafiki dla języka Ruby
 Name:		ruby-%{pkgname}
 Version:	2.16.0
-Release:	3
+Release:	4
 License:	Ruby-alike
 Group:		Development/Languages
 Source0:	http://rubygems.org/downloads/rmagick-%{version}.gem
