@@ -8,7 +8,7 @@ Summary:	Graphics Processing library for Ruby
 Summary(pl.UTF-8):	Biblioteka przetwarzania grafiki dla języka Ruby
 Name:		ruby-%{pkgname}
 Version:	2.16.0
-Release:	5
+Release:	6
 License:	Ruby-alike
 Group:		Development/Languages
 Source0:	http://rubygems.org/downloads/rmagick-%{version}.gem
