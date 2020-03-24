@@ -1,100 +1,12 @@
-diff -ur RMagick-2.15.4.orig/test/Image2.rb RMagick-2.15.4/test/Image2.rb
---- RMagick-2.15.4.orig/test/Image2.rb	2015-12-31 10:37:02.727013180 +0100
-+++ RMagick-2.15.4/test/Image2.rb	2015-12-31 10:39:26.833009873 +0100
-@@ -442,12 +442,7 @@
-     assert_nothing_raised do
-     @img.each_profile do |name, value|
-       assert_equal('iptc', name)
--      # As of 6.3.1
--      if IM_VERSION < Gem::Version.new('6.6.4') || (IM_VERSION == Gem::Version.new('6.6.4') && IM_REVISION < Gem::Version.new('5'))
--      assert_equal("8BIM\004\004\000\000\000\000\001\340test profile", value)
--      else
-       assert_equal('test profile', value)
--      end
+--- RMagick-4.1.0/lib/rmagick_internal.rb~	2020-03-24 10:30:49.000000000 +0100
++++ RMagick-4.1.0/lib/rmagick_internal.rb	2020-03-24 10:34:54.810077969 +0100
+@@ -285,8 +285,7 @@
+     # colorization rule
+     def alpha(x, y, method)
+       Kernel.raise ArgumentError, 'Unknown paint method' unless PAINT_METHOD_NAMES.key?(method.to_i)
+-      name = Gem::Version.new(Magick::IMAGEMAGICK_VERSION) > Gem::Version.new('7.0.0') ? 'alpha ' : 'matte '
+-      primitive name + sprintf('%g,%g, %s', x, y, PAINT_METHOD_NAMES[method.to_i])
++      primitive 'alpha ' + sprintf('%g,%g, %s', x, y, PAINT_METHOD_NAMES[method.to_i])
      end
-     end
-   end
-Only in RMagick-2.15.4/test: Image2.rb~
-diff -ur RMagick-2.15.4.orig/test/Image_attributes.rb RMagick-2.15.4/test/Image_attributes.rb
---- RMagick-2.15.4.orig/test/Image_attributes.rb	2015-12-31 10:37:02.727013180 +0100
-+++ RMagick-2.15.4/test/Image_attributes.rb	2015-12-31 10:40:06.426244917 +0100
-@@ -162,11 +162,7 @@
-   def test_colorspace
-     assert_nothing_raised { @img.colorspace }
-     assert_instance_of(Magick::ColorspaceType, @img.colorspace)
--    if IM_VERSION < Gem::Version.new('6.7.5') || (IM_VERSION == Gem::Version.new('6.7.5') && IM_REVISION < Gem::Version.new('5'))
--      assert_equal(Magick::RGBColorspace, @img.colorspace)
--    else
--      assert_equal(Magick::SRGBColorspace, @img.colorspace)
--    end
-+    assert_equal(Magick::SRGBColorspace, @img.colorspace)
-     img = @img.copy
-     assert_nothing_raised { img.colorspace = Magick::GRAYColorspace }
-     assert_equal(Magick::GRAYColorspace, img.colorspace)
-@@ -396,11 +392,7 @@
-   def test_gamma
-     assert_nothing_raised { @img.gamma }
-     assert_instance_of(Float, @img.gamma)
--    if IM_VERSION < Gem::Version.new('6.7.5') || (IM_VERSION == Gem::Version.new('6.7.5') && IM_REVISION < Gem::Version.new('5'))
--      assert_equal(0.0, @img.gamma)
--    else
--      assert_equal(0.45454543828964233, @img.gamma)
--    end
-+    assert_equal(0.45454543828964233, @img.gamma)
-     assert_nothing_raised { @img.gamma = 2.0 }
-     assert_equal(2.0, @img.gamma)
-     assert_raise(TypeError) { @img.gamma = 'x' }
-@@ -489,11 +481,7 @@
  
-   def test_number_colors
-     assert_nothing_raised { @hat.number_colors }
--    if IM_VERSION < Gem::Version.new('6.7.5') || (IM_VERSION == Gem::Version.new('6.7.5') && IM_REVISION < Gem::Version.new('5'))
--      assert_equal(27980, @hat.number_colors)
--    else
--      assert_equal(27942, @hat.number_colors)
--    end
-+    assert_equal(27942, @hat.number_colors)
-     assert_raise(NoMethodError) { @hat.number_colors = 2 }
-   end
- 
-@@ -556,11 +544,7 @@
-   def test_rendering_intent
-     assert_nothing_raised { @img.rendering_intent }
-     assert_instance_of(Magick::RenderingIntent, @img.rendering_intent)
--    if IM_VERSION < Gem::Version.new('6.7.5') || (IM_VERSION == Gem::Version.new('6.7.5') && IM_REVISION < Gem::Version.new('5'))
--      assert_equal(Magick::UndefinedIntent, @img.rendering_intent)
--    else
--      assert_equal(Magick::PerceptualIntent, @img.rendering_intent)
--    end
-+    assert_equal(Magick::PerceptualIntent, @img.rendering_intent)
-     assert_nothing_raised { @img.rendering_intent = Magick::SaturationIntent }
-     assert_nothing_raised { @img.rendering_intent = Magick::PerceptualIntent }
-     assert_nothing_raised { @img.rendering_intent = Magick::AbsoluteIntent }
-@@ -605,11 +589,7 @@
- 
-   def test_total_colors
-     assert_nothing_raised { @hat.total_colors }
--    if IM_VERSION < Gem::Version.new('6.7.5') || (IM_VERSION == Gem::Version.new('6.7.5') && IM_REVISION < Gem::Version.new('5'))
--      assert_equal(27980, @hat.total_colors)
--    else
--      assert_equal(27942, @hat.total_colors)
--    end
-+    assert_equal(27942, @hat.total_colors)
-     assert_raise(NoMethodError) { @img.total_colors = 2 }
-   end
- 
-Only in RMagick-2.15.4/test: Image_attributes.rb~
-diff -ur RMagick-2.15.4.orig/test/test_all_basic.rb RMagick-2.15.4/test/test_all_basic.rb
---- RMagick-2.15.4.orig/test/test_all_basic.rb	2015-12-31 10:37:02.730346491 +0100
-+++ RMagick-2.15.4/test/test_all_basic.rb	2015-12-31 10:38:48.136472547 +0100
-@@ -22,9 +22,6 @@
- Magick::Magick_version =~ /ImageMagick (\d+\.\d+\.\d+)-(\d+) /
- abort 'Unable to get ImageMagick version' unless $1 && $2
- 
--IM_VERSION = Gem::Version.new($1)
--IM_REVISION = Gem::Version.new($2)
--
- require 'Image1.rb'
- require 'Image2.rb'
- require 'Image3.rb'
-Only in RMagick-2.15.4/test: test_all_basic.rb~
+     # Draw an arc.
