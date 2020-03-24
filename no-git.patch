@@ -19,7 +19,7 @@
    end
  end
  
--task :push_and_tag => [:build] do
+-task push_and_tag: [:build] do
 -  sh "gem push #{File.join(base, 'pkg', gem_name)}"
 -  if $CHILD_STATUS.success?
 -    sh "git tag -a -m \"Version #{version}\" #{version_tag}"
@@ -32,10 +32,10 @@
 -end
 -
 -desc 'Release'
--task :release => [:assert_clean_repo, :push_and_tag]
+-task release: %i[assert_clean_repo push_and_tag]
 -
 -desc 'Release and build the legacy way'
--task :legacy_release=> ['legacy:README.html', 'legacy:extconf', 'legacy:doc', 'legacy:manifest', 'release']
+-task legacy_release: ['legacy:README.html', 'legacy:extconf', 'legacy:doc', 'legacy:manifest', 'release']
 -
  namespace :legacy do
    require 'find'
@@ -48,6 +48,6 @@
  
 -  tracked_files = `git ls-files`.split($OUTPUT_RECORD_SEPARATOR)
 +  tracked_files = `find ./ -printf "%P\n"`.split($OUTPUT_RECORD_SEPARATOR)
-   file_exclusion_regex = %r{(\Alib/rvg/to_c.rb)}
-   files         = tracked_files.reject{|file| file[file_exclusion_regex] }
+   file_exclusion_regex = %r{\A(doc|benchmarks|examples|spec|lib/rvg/to_c.rb)}
+   files         = tracked_files.reject { |file| file[file_exclusion_regex] }
    test_files    = files.grep(%r{^(test|spec|features)/})
