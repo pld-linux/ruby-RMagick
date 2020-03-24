@@ -7,18 +7,16 @@
 Summary:	Graphics Processing library for Ruby
 Summary(pl.UTF-8):	Biblioteka przetwarzania grafiki dla języka Ruby
 Name:		ruby-%{pkgname}
-Version:	2.16.0
-Release:	7
+Version:	4.1.0
+Release:	1
 License:	Ruby-alike
 Group:		Development/Languages
 Source0:	http://rubygems.org/downloads/rmagick-%{version}.gem
-# Source0-md5:	d03bb84d342b0a78f9c6262acb451dc8
+# Source0-md5:	e22024f2c78088f101ff0acade179043
 Patch0:		no-gem.patch
-Patch1:		disable-tests.patch
-Patch2:		no-git.patch
-Patch3:		magick6.patch
+Patch1:		no-git.patch
 URL:		https://github.com/gemhome/rmagick
-BuildRequires:	ImageMagick6-devel >= 1:6.7.0.7-2
+BuildRequires:	ImageMagick-devel >= 1:7.0.0
 BuildRequires:	ruby-test-unit
 BuildRequires:	gmp-devel
 BuildRequires:	rpm-rubyprov
@@ -33,26 +31,26 @@ BuildRequires:	ruby-rspec-core
 BuildRequires:	ruby-rspec-expectations
 BuildRequires:	ruby-rspec-mocks
 %if %{with tests}
-BuildRequires:	ImageMagick6-coder-dot
-BuildRequires:	ImageMagick6-coder-fpx
-BuildRequires:	ImageMagick6-coder-jbig
-BuildRequires:	ImageMagick6-coder-jpeg
-BuildRequires:	ImageMagick6-coder-jpeg2
-BuildRequires:	ImageMagick6-coder-miff
-BuildRequires:	ImageMagick6-coder-mpr
-BuildRequires:	ImageMagick6-coder-pdf
-BuildRequires:	ImageMagick6-coder-png
-BuildRequires:	ImageMagick6-coder-ps2
-BuildRequires:	ImageMagick6-coder-svg
-BuildRequires:	ImageMagick6-coder-tiff
-BuildRequires:	ImageMagick6-coder-url
-BuildRequires:	ImageMagick6-coder-wmf
+BuildRequires:	ImageMagick-coder-dot
+BuildRequires:	ImageMagick-coder-fpx
+BuildRequires:	ImageMagick-coder-jbig
+BuildRequires:	ImageMagick-coder-jpeg
+BuildRequires:	ImageMagick-coder-jpeg2
+BuildRequires:	ImageMagick-coder-miff
+BuildRequires:	ImageMagick-coder-mpr
+BuildRequires:	ImageMagick-coder-pdf
+BuildRequires:	ImageMagick-coder-png
+BuildRequires:	ImageMagick-coder-ps2
+BuildRequires:	ImageMagick-coder-svg
+BuildRequires:	ImageMagick-coder-tiff
+BuildRequires:	ImageMagick-coder-url
+BuildRequires:	ImageMagick-coder-wmf
 %endif
 %if %{with doc}
 BuildRequires:	ruby-rdoc
 %endif
 BuildConflicts:	ruby-RMagick < 1.7.2
-%requires_ge_to	ImageMagick6-libs ImageMagick6-devel
+%requires_ge_to	ImageMagick-libs ImageMagick-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -100,10 +98,6 @@ Dokumentacja w formacie ri dla modułu języka Ruby %{pkgname}.
 %setup -q -n %{pkgname}-%{version}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
-
-%{__rm} spec/rmagick/draw_spec.rb
 
 %build
 # write .gemspec
@@ -133,7 +127,7 @@ rdoc --op rdoc ext/RMagick lib
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{ruby_vendorlibdir},%{ruby_vendorarchdir},%{ruby_ridir},%{ruby_specdir},%{ruby_rdocdir}/%{name}-%{version},%{_examplesdir}/%{name}-%{version}}
+install -d $RPM_BUILD_ROOT{%{ruby_vendorlibdir},%{ruby_vendorarchdir},%{ruby_ridir},%{ruby_specdir},%{ruby_rdocdir}/%{name}-%{version}}
 
 cp -a lib/* $RPM_BUILD_ROOT%{ruby_vendorlibdir}
 %{__rm} $RPM_BUILD_ROOT%{ruby_vendorlibdir}/RMagick2.so
@@ -146,8 +140,6 @@ cp -a ri/* $RPM_BUILD_ROOT%{ruby_ridir}
 cp -a rdoc/* $RPM_BUILD_ROOT%{ruby_rdocdir}/%{name}-%{version}
 %endif
 
-cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-
 # install gemspec
 cp -p %{pkgname}-%{version}.gemspec $RPM_BUILD_ROOT%{ruby_specdir}
 
@@ -156,13 +148,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc CHANGELOG.md LICENSE README.textile
+%doc CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md LICENSE README.md
 %{ruby_vendorlibdir}/rmagick
 %{ruby_vendorlibdir}/rmagick*.rb
 %{ruby_vendorlibdir}/rvg
 %attr(755,root,root) %{ruby_vendorarchdir}/RMagick2.so
 %{ruby_specdir}/%{pkgname}-%{version}.gemspec
-%{_examplesdir}/%{name}-%{version}
 
 %if %{with doc}
 %files rdoc
