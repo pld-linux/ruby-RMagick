@@ -91,16 +91,13 @@ ri documentation for Ruby %{pkgname} module.
 Dokumentacja w formacie ri dla modułu języka Ruby %{pkgname}.
 
 %prep
-%setup -q -n %{pkgname}-%{version}
+%setup -q -n rmagick-%{version}
 %patch0 -p1
 %patch1 -p1
 
 %build
-# write .gemspec
-%__gem_helper spec
-
 # make gemspec self-contained
-ruby -r rubygems -e 'spec = eval(File.read("rmagick.gemspec"))
+ruby -r rubygems -e 'spec = eval(File.read("rmagick-%{version}.gemspec"))
 	File.open("%{pkgname}-%{version}.gemspec", "w") do |file|
 	file.puts spec.to_ruby_for_cache
 end' #'

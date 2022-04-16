@@ -1,6 +1,7 @@
---- RMagick-2.15.4/Rakefile~	2016-03-13 10:19:00.000000000 +0100
-+++ RMagick-2.15.4/Rakefile	2016-03-13 10:20:10.123489864 +0100
-@@ -21,14 +21,6 @@
+diff -urNp -x '*.orig' rmagick-4.1.0.org/Rakefile rmagick-4.1.0/Rakefile
+--- rmagick-4.1.0.org/Rakefile	2022-04-16 10:15:10.279112702 +0200
++++ rmagick-4.1.0/Rakefile	2022-04-16 10:15:10.809107765 +0200
+@@ -28,14 +28,6 @@ task :config do
    end
  end
  
@@ -13,9 +14,9 @@
 -end
 -
  desc 'build gem'
- task :build => [:config] do
+ task build: [:config] do
    sh 'gem build -V rmagick.gemspec'
-@@ -41,24 +33,6 @@
+@@ -48,24 +40,6 @@ task build: [:config] do
    end
  end
  
@@ -40,9 +41,10 @@
  namespace :legacy do
    require 'find'
  
---- RMagick-2.15.4/rmagick.gemspec~	2016-03-13 10:39:36.000000000 +0100
-+++ RMagick-2.15.4/rmagick.gemspec	2016-03-13 10:42:46.932844991 +0100
-@@ -13,7 +13,7 @@
+diff -urNp -x '*.orig' rmagick-4.1.0.org/rmagick.gemspec rmagick-4.1.0/rmagick.gemspec
+--- rmagick-4.1.0.org/rmagick.gemspec	2022-04-16 10:15:10.292445911 +0200
++++ rmagick-4.1.0/rmagick.gemspec	2022-04-16 10:15:10.809107765 +0200
+@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
    s.homepage = 'https://github.com/rmagick/rmagick'
    s.license = 'MIT'
  
