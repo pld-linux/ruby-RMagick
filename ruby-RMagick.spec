@@ -92,8 +92,8 @@ Dokumentacja w formacie ri dla modułu języka Ruby %{pkgname}.
 
 %prep
 %setup -q -n rmagick-%{version}
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 
 %build
 # make gemspec self-contained
